@@ -1,0 +1,162 @@
+.App {
+  margin-top: 15px;
+}
+.container {
+  top: 50px;  
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.navbar .navHeader a{
+  text-decoration: none;
+  color: black;
+  font-style: italic;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: old;
+}
+.navbar .navLinks a{
+  text-decoration: none;
+  color: #ef640e;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.navbar .navLinks a:hover{
+  color: black;
+}
+.navbar .navLinks2 {
+  margin-left: auto;
+}
+.navbar .navLinks2 a{
+  text-decoration: none;
+  color: #ef640e;
+  padding: 10px;
+  font-weight: bold;
+}
+.navbar .navLinks2 a:hover{
+  color: black;
+}
+.navbar .navLinks2 .connect{
+ color: #ef640e;
+ font-size: 16px;
+ font-weight: bold;
+ margin: 10px;
+ border: 0.5px solid grey;
+ border-radius: 25px;
+ padding: 8px;
+}
+.navbar .navLinks2 .connect:hover{
+  color: #ef640e;
+  opacity: 0.7;
+  transition: all 1s ease-out;
+ }
+ .createNft {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+ }
+ 
+.inputname {
+  left: 0;
+  margin-top: 25px;
+  color: black;
+  width: 100%;
+  height: 60px;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.inputSpace{
+  position: relative;
+  margin-top: 5px;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+}
+.createNftBtn {
+  padding: 10px;
+  display: block;
+  width: 100%;
+  background-color: #ef640e;
+  border-radius: 15px;
+  border: 1px solid white;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+.homePg {
+  /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(210, 242, 247)); */
+  /* background-image: (process.env.PUBLIC_URL + '/cover2jpg.jpg'); */
+  /* background-image: url(${process.env.PUBLIC_URL + '/cover2jpg.jpg'}); */
+  background-color: black;
+  /* background-image: url('/public/webLandingpage.png'); */
+  /* background-repeat: no-repeat, repeat;
+  background-position: right;
+  background-size: contain; */
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  overflow: hidden;
+}
+.bigHeader {
+  padding-top: 10%;
+  font-size: 40px;
+  color: white
+}
+.biggerHeader {
+  font-size: 30px;
+  color: #ef640e;
+  font-style: italic;
+}
+.homeLink {
+  text-decoration: none;
+  text-align: center;
+  font-size: 25px;
+  color: #ef640e;
+  border: 1px solid grey;
+  border-radius: 15px;
+  padding: 10px;
+  font-weight: bold;
+  background-color: white;
+  display:grid;
+  width: 10%;
+  margin-top: 3%;
+}
+.imageHome {
+  width: 150px;
+  height: 80px;
+  background-color: yellow;
+  -ms-transform: rotate(20deg); /* IE 9 */
+  transform: rotate(90deg);
+}
+
+@media screen and (max-width: 499px) {
+  .container {
+    position: absolute;
+    width: 600px;
+    height: 405px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 150px;
+    overflow-y: hidden;
+  }
+  .navLinks2 {
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    right: 100px;
+    top: 50px;
+  }
+  .homePg {
+    background-color: rgb(210, 242, 247);
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+  }
+}
