@@ -6,11 +6,13 @@ const HomePg = () => {
             <div className="imageHome" style={{float:'right'}}>
               <img src={process.env.PUBLIC_URL + '/webLandingpage.png'} />
               </div>
+              <div className="homeContent">
             <h1 className="bigHeader">Explore, create and Buy</h1>
             <h1 className="biggerHeader">NFT Art</h1>
 
             <Link to="/explore" className="homeLink">Explore</Link>
             <p></p>
+            </div>
         </div>
     );
 }
