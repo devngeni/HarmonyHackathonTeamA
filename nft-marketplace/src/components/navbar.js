@@ -15,7 +15,6 @@ const Navbar = () => {
             </div>
             <div className="navLinks2">
                 <a href="/" className="Button"><i class="fa-solid fa-wallet"></i>Sign Up</a>
-                {/* <a href="/" className="Button"><i class="fa-solid fa-wallet"></i>Wallet</a> */}
                 <button className='connect'>Connect wallet</button>
             </div>
         </nav>
