@@ -1,9 +1,9 @@
 .App {
   margin-top: 15px;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
 }
 .container {
-  top: 50px;  
+  top: 50px;
 }
 .navbar {
   display: flex;
@@ -11,8 +11,10 @@
   max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
+  border-bottom: 1px solid grey;
 }
-.navbar .navHeader a{
+.navbar .navHeader a {
   text-decoration: none;
   color: black;
   font-style: italic;
@@ -20,52 +22,52 @@
   font-size: 25px;
   font-weight: old;
 }
-.navbar .navLinks a{
+.navbar .navLinks a {
   text-decoration: none;
   color: #ef640e;
   padding: 10px;
   font-weight: bold;
   font-size: 18px;
 }
-.navbar .navLinks a:hover{
+.navbar .navLinks a:hover {
   color: black;
 }
-.navbar .navLinks a:active{
+.navbar .navLinks a:active {
   color: black;
 }
 .navbar .navLinks2 {
   margin-left: auto;
 }
-.navbar .navLinks2 a{
+.navbar .navLinks2 a {
   text-decoration: none;
   color: #ef640e;
   padding: 10px;
   font-weight: bold;
 }
-.navbar .navLinks2 a:hover{
+.navbar .navLinks2 a:hover {
   color: black;
 }
-.navbar .navLinks2 .connect{
- color: #ef640e;
- font-size: 16px;
- font-weight: bold;
- margin: 10px;
- border: 0.5px solid grey;
- border-radius: 25px;
- padding: 8px;
+.navbar .navLinks2 .connect {
+  color: #ef640e;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+  border: 0.5px solid grey;
+  border-radius: 25px;
+  padding: 15px;
 }
-.navbar .navLinks2 .connect:hover{
+.navbar .navLinks2 .connect:hover {
   color: #ef640e;
   opacity: 0.7;
   transition: all 1s ease-out;
- }
- .createNft {
-    left      : 50%;
-    top       : 50%;
-    position  : absolute;
-    transform : translate(-50%, -50%);
- }
- 
+}
+.createNft {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
 .inputname {
   left: 0;
   margin-top: 25px;
@@ -77,7 +79,7 @@
   font-style: normal;
 }
 
-.inputSpace{
+.inputSpace {
   position: relative;
   margin-top: 5px;
   width: 100%;
@@ -99,17 +101,20 @@
 .homePg {
   background-color: black;
   /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */
-  min-height: 92.8vh;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  min-height: 100vh;
   height: 100%;
   width: 100%;
   background-size: cover;
-  overflow: hidden; 
-  letter-spacing: 2px; 
-  font-weight:bolder;
+  overflow: hidden;
+  letter-spacing: 2px;
+  font-weight: bolder;
 }
 .bigHeader {
   padding-top: 8%;
-  font-size: 40px;
+  font-size: 37px;
   color: white;
 }
 .biggerHeader {
@@ -130,8 +135,8 @@
   border-radius: 15px;
   padding: 10px;
   background-color: white;
-  display:grid;
-  width: 10%;
+  display: grid;
+  width: fit-content;
   margin-top: 2%;
 }
 .homeLink span {
@@ -140,7 +145,7 @@
   transition: 0.5s;
 }
 .homeLink span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -164,16 +169,22 @@
   transform: rotate(90deg);
 }
 .homeContent {
-  max-width: 90%;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 95px;
 }
 .homeText {
   color: white;
   font-size: 20px;
-  margin-top: 10%; 
+  margin-top: 10%;
   color: #f3a8d6;
   font-style: italic;
+}
+.explorePg {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 499px) {
@@ -181,7 +192,7 @@
     position: absolute;
     width: 600px;
     height: 405px;
-    left: 50%;
+    left: 50%; 
     transform: translate(-50%);
     top: 150px;
     overflow-y: hidden;
@@ -194,9 +205,17 @@
     top: 50px;
   }
   .homePg {
-    background-color: rgb(210, 242, 247);
-    min-height: 100vh;
+    background-color: black;
+    /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: space-between;
+    min-height: 92.8vh;
+    height: 100%;
     width: 100%;
     background-size: cover;
+    overflow: hidden;
+    letter-spacing: 2px;
+    font-weight: bolder;
   }
 }
