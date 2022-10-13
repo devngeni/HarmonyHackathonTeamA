@@ -11,23 +11,33 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.1.2",
     "babel-plugin-macros": "^3.1.0",
     "bn.js": "^5.2.1",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
+    "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "web3": "^1.8.0",
-    "web3modal": "^1.9.9"
+    "web3modal": "^1.9.9",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "server": "nodemon server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  }, 
+  },
+  "proxy": "http://127.0.0.1:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
