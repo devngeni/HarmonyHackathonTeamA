@@ -1,12 +1,15 @@
 const express = require("express");
 var bodyParser = require('body-parser')
 require('dotenv').config();
-// const cors = require("cors");
+const cors = require("cors");
 const app = express();
 var axios = require("axios");
 const path = require('path');
 const pinata = process.env.PINATA_JWT;
-// app.use(cors());
+var fs = require('fs');
+var FormData = require('form-data');
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -29,48 +32,37 @@ console.log(res.data);
 connectPinata();
 
 
-app.post("/uploadNFT", async function (req, res){
-  let data = req.body;
-    res.json(data);
+app.post("/api/uploadNFT", async function (req, res){
+  let file = req.body;
+    res.json(file);
 
-      var info = JSON.stringify({
-        "pinataOptions": {
-          "cidVersion": 1
-        }
-      });
+      // var info = JSON.stringify({
+      //   "pinataOptions": {
+      //     "cidVersion": 1
+      //   }
+      // });
 
-  await axios({
-    method: "post",
-    url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${pinata}`
-    },
-    data,
-    info
-  }).then((res) => {
-    const pinataUrl = "https://gateway.pinata.cloud/ipfs/" + res.data.IpfsHash
-    console.log(pinataUrl)
-  })
-    .catch((err) => {
-      console.log("Error ", err.message)
-    })
+
+  
+
+  // await axios({
+  //   method: "post",
+  //   url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${pinata}`
+  //   },
+  //   data,
+  //   info
+  // }).then((res) => {
+  //   const pinataUrl = "https://gateway.pinata.cloud/ipfs/" + res.data.IpfsHash
+  //   console.log(pinataUrl)
+  // })
+  //   .catch((err) => {
+  //     console.log("Error ", err.message)
+  //   })
+  
  });
 
+ app.listen(process.env.PORT || 8080);
 
-// app.listen(process.env.PORT || 8080);
-
-// export const uploadFileToIPFS = async(file) => {
-//   const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
-//   //making axios POST request to Pinata ⬇️
-  
-//   let data = new FormData();
-//   data.append('file', file);
-
-//   const metadata = JSON.stringify({
-//       name: 'testname',
-//       keyvalues: {
-//           exampleKey: 'exampleValue'
-//       }
-//   });
-//   data.append('pinataMetadata', metadata);
