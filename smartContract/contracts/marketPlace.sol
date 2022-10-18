@@ -74,7 +74,7 @@ contract Marketplace is  ERC721URIStorage {
         _safeMint(msg.sender, newTokenId);
 
         //Map the tokenId to the tokenURI (which is an IPFS URL with the NFT metadata)
-        _setTokenURI(newTokenId, tokenURI);
+        _setTokenURI(newTokenId,        );
 
         //Helper function to update Global variables and emit an event
         createListedToken(newTokenId, price);
