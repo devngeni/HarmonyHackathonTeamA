@@ -11,7 +11,7 @@ const CreateNFT = () => {
       });
 
 const [fileURL, setFileURL] = useState(null);
-
+const [message, updateMessage] = useState("");
 
  async function handleChange(e) {
     var file = e.target.files[0];
@@ -51,15 +51,44 @@ const [fileURL, setFileURL] = useState(null);
   }
 
  const handleSubmission = async (e) => {
+  await window.ethereum.request({
+    method: "eth_requestAccounts",
+  });
+  e.preventDefault();
       //Upload data to IPFS
       try {
-         uploadMetadataToIPFS();
+        const metadataURL = await uploadMetadataToIPFS();
         //  const provider
+        //After adding your Hardhat network to your metamask, this code will get providers and signers
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      //Pull the deployed contract instance
+      let contract = new ethers.Contract(
+        NFT_CONTRACT_ADDRESS,
+        abi,
+        signer
+      );
+        //massage the params to be sent to the create NFT request
+        const price = ethers.utils.parseUnits(formParams.price, "ether");
+        let listingPrice = await contract.getListPrice();
+        listingPrice = listingPrice.toString();
+        //actually create the NFT
+        let transaction = await contract.createToken(metadataURL, price, {
+          value: listingPrice,
+        });
+        await transaction.wait();
+        updateMessage("Please wait.. uploading (upto 5 mins)");
+        alert("Successfully listed your NFT!");
+        updateMessage("");
+        updateFormParams({ name: "", description: "", price: "" });
+        window.location.replace("/explore");
       } catch (e) {
+        updateMessage("failed, please fill all fields...");
         alert(e);
       }
 
  }
+ 
     return (
         <div className="createNft">
             <h1>Create Your NFT</h1>
@@ -80,7 +109,7 @@ const [fileURL, setFileURL] = useState(null);
                     </div>
                     <div className='inputname'>Upload
                     <div style={{border:'2px dotted grey', height: '100px', width: '100%'}}>
-                    <input type="file" className="inputSpace" name="nftfile" onChange={handleChange}></input>
+                    <input type="file" className="inputSpace" name="nftfile" value={formParams.file} onChange={handleChange}></input>
                     </div>
                     </div>
                     <button className='createNftBtn' onClick={handleSubmission}>Create</button>
