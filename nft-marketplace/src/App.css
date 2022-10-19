@@ -187,36 +187,50 @@
   color: #f3a8d6;
   font-style: italic;
 }
+.explorePg {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 .explore {
   display: grid;
-  gap: 20px;
-  grid-template-columns: auto auto auto auto;
-  padding: 2% 5% 0 5%;
-  width: calc(100% - 5%);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: min(1vmax, 10px);
+  padding: 2% 25% 0 15%;
+  width: calc(100% - 30%);
 }
 .cardsData{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 100%;
+  width: 93%;
   cursor: pointer;
   max-width: 360px;
+  border-radius: 30px;
 }
 .cardsData img{
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
   width: 100%;
+  height: 300px;
+  border-radius: 30px;
 }
-
+.createNftBtn2{
+  display: block;
+  padding: 0px;  
+  width: 0%;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+}
 .cardsData:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.exploreData {
-  color: #ef640e;
-  margin-right: 0;
-  font-size: 27px;
-  text-transform: capitalize;
-}
-.createNftBtn2 {
+.cardsData:hover .createNftBtn2{
+  display: block;
   padding: 10px;  
-  width: 50%;
+  width: 30%;
   background-color: #ef640e;
   border-radius: 15px;
   border: 1px solid white;
@@ -224,7 +238,58 @@
   color: white;
   font-size: 16px;
 }
-
+.exploreData  {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+  padding-left: 10px;
+}
+.exploreDes{
+  font-size: 15px;
+  text-transform: capitalize;
+  padding-left: 10px;
+}
+.exploreprice{
+  font-weight: 250;
+  padding-left: 10px;
+  border: 0.1px solid rgba(235, 230, 230, 0.5);
+  border-radius: 15px;
+  background-color: rgb(249, 251, 252);
+  padding: 10px;
+  margin: 10px;
+}
+/* .design-elements{
+  position: absolute;
+  width: 95%;
+  height: 97%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: .5s;
+}
+.dot{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ef640e;
+}
+.dot:nth-child(1){
+  top: -15px;
+  left: -15px;
+}
+.dot:nth-child(2){
+  top: -15px;
+  right: -15px;
+}
+.dot:nth-child(3){
+  bottom: -15px;
+  right: -15px;
+}
+.dot:nth-child(4){
+  bottom: -15px;
+  left: -15px;
+} */
 
 @media screen and (max-width: 499px) {
   .container {

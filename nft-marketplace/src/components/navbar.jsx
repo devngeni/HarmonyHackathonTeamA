@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import detectEthereumProvider from '@metamask/detect-provider';
@@ -61,6 +61,10 @@ const signInMetamask = async () => {
     });
 };
 signInMetamask()
+// const navigate = useNavigate()
+// const handleClick=() => {
+//   navigate("/explore")
+// }
 
 return (
   <>
@@ -70,6 +74,7 @@ return (
             <Link to="/">Ngeni NFT Market</Link>
         </div>
         <div className="navLinks">
+            {/* <div onClick={() => handleClick()}>explore</div> */}
             <Link to="/explore">Explore</Link>
             <Link to="/create">Create NFT</Link>
         </div>

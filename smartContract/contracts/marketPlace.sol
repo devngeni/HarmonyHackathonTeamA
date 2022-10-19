@@ -38,7 +38,7 @@ contract Marketplace is  ERC721URIStorage {
     mapping(uint256 => ListedToken) private idToListedToken;
 
     constructor() ERC721("NGENINFTMarketplace", "NNFTM") {
-        owner = payable(msg.sender);
+        owner = payable(msg.sender);idToListedToken
     }
 
 
