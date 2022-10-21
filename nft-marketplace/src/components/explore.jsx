@@ -96,7 +96,7 @@ const Explore = () => {
             <div key={index} className="cardsData">
             
               <img src={nft.image} alt={nft.image}></img>
-              <p className="exploreData">{nft.name} sags asjs</p>
+              <p className="exploreData">{nft.name}</p>
               {/* <p className='exploreDes'>{nft.description} jhdasdhw ncsdhcs xcgsd dscjsa</p> */}
               <p className="exploreprice">
                 Price
