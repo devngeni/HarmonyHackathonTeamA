@@ -54,7 +54,7 @@
   margin: 10px;
   border: 0.5px solid grey;
   border-radius: 25px;
-  padding: 15px;
+  padding: 20px;
 }
 .navbar .navLinks2 .connect:hover {
   color: #ef640e;
@@ -187,36 +187,61 @@
   color: #f3a8d6;
   font-style: italic;
 }
+.explorePg {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 .explore {
   display: grid;
-  gap: 20px;
-  grid-template-columns: auto auto auto auto;
-  padding: 2% 5% 0 5%;
-  width: calc(100% - 5%);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: min(1vmax, 10px);
+  padding: 2% 25% 0 15%;
+  width: calc(100% - 30%);
 }
 .cardsData{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 100%;
+  width: 93%;
   cursor: pointer;
   max-width: 360px;
+  border-radius: 30px;
 }
 .cardsData img{
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
   width: 100%;
+  height: 300px;
+  border-radius: 30px;
 }
-
+.createNftBtn2{
+  display: block;
+  padding: 0px;  
+  width: 0%;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+}
+.link2Button {
+  display: none;
+}
+.cardsData:hover .link2Button{
+  display: block;
+  padding: 10px;  
+  background-color: #ef640e;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
 .cardsData:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.exploreData {
-  color: #ef640e;
-  margin-right: 0;
-  font-size: 27px;
-  text-transform: capitalize;
-}
-.createNftBtn2 {
+.cardsData:hover .createNftBtn2{
+  display: block;
   padding: 10px;  
-  width: 50%;
+  width: 30%;
   background-color: #ef640e;
   border-radius: 15px;
   border: 1px solid white;
@@ -224,7 +249,104 @@
   color: white;
   font-size: 16px;
 }
-
+.exploreData  {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+  padding-left: 10px;
+  text-align: center;
+}
+.exploreDes{
+  font-size: 15px;
+  text-transform: capitalize;
+  padding-left: 10px;
+  font-weight: 300;
+}
+.exploreprice{
+  font-weight: 250;
+  padding-left: 10px;
+  border: 0.1px solid rgba(235, 230, 230, 0.5);
+  border-radius: 15px;
+  background-color: rgb(249, 251, 252);
+  padding: 10px;
+  margin: 10px;
+}
+.yourPg{
+  padding-top: 50px;
+  font-style: italic;
+}
+.resellPg{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: min(1vmax, 10px);
+  padding: 5% 25% 0 25%;
+  width: calc(100% - 50%);
+}
+.resellPg img{
+  height: 430px;
+  border: 1px solid rgb(223, 216, 216);
+  border-radius: 20px;
+}
+.resellPg p{
+  font-size: 16px;
+  width: 80%;
+  padding-top: 5px;
+  text-align: justify;
+}
+.inputResell{
+  position: relative;
+  margin-top: 5px;
+  width: 50%;
+  height: 40px;
+  text-align: center;
+}
+.createNftBtnResell{
+  padding: 10px;
+  display: block;
+  width: 50%;
+  background-color: #ef640e;
+  border-radius: 15px;
+  border: 1px solid white;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-top: 5%;
+}
+.inputPageResell{
+  padding-top: 2%;
+}
+/* .design-elements{
+  position: absolute;
+  width: 95%;
+  height: 97%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: .5s;
+}
+.dot{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ef640e;
+}
+.dot:nth-child(1){
+  top: -15px;
+  left: -15px;
+}
+.dot:nth-child(2){
+  top: -15px;
+  right: -15px;
+}
+.dot:nth-child(3){
+  bottom: -15px;
+  right: -15px;
+}
+.dot:nth-child(4){
+  bottom: -15px;
+  left: -15px;
+} */
 
 @media screen and (max-width: 499px) {
   .container {
@@ -318,5 +440,19 @@
     color: white;
     font-size: 16px;
     margin-top: 30%;
+  }
+}
+
+.spinbtn {
+  color: #d9d9d9;
+  animation: reload_spin infinite 2s linear;
+}
+
+@keyframes reload_spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -74,7 +74,7 @@ contract Marketplace is  ERC721URIStorage {
         _safeMint(msg.sender, newTokenId);
 
         //Map the tokenId to the tokenURI (which is an IPFS URL with the NFT metadata)
-        _setTokenURI(newTokenId,        );
+        _setTokenURI(newTokenId, tokenURI );
 
         //Helper function to update Global variables and emit an event
         createListedToken(newTokenId, price);
@@ -110,18 +110,20 @@ contract Marketplace is  ERC721URIStorage {
     //This will return all the NFTs currently listed to be sold on the marketplace
     function getAllNFTs() public view returns (ListedToken[] memory) {
         uint nftCount = _tokenIds.current();
-        ListedToken[] memory tokens = new ListedToken[](nftCount);
+        uint unSoldItemCount = _tokenIds.current() - _itemsSold.current();
+
+        ListedToken[] memory tokens = new ListedToken[](unSoldItemCount);
         uint currentIndex = 0;
-        uint currentId;
         //at the moment currentlyListed is true for all, if it becomes false in the future we will 
         //filter out currentlyListed == false over here
-        for(uint i=0;i<nftCount;i++)
-        {
-            currentId = i + 1;
-            ListedToken storage currentItem = idToListedToken[currentId];
-            tokens[currentIndex] = currentItem;
-            currentIndex += 1;
-        }
+        for (uint i = 0; i < nftCount; i++) {
+            if(idToListedToken[i+1].owner==address(this)){
+              uint currentId = i + 1;
+             ListedToken storage currentItem = idToListedToken[currentId];
+             tokens[currentIndex] = currentItem;
+             currentIndex += 1;
+            }
+         }
         //the array 'tokens' has the list of all NFTs in the marketplace
         return tokens;
     }
@@ -153,44 +155,39 @@ contract Marketplace is  ERC721URIStorage {
         return items;
     }
 
-    function executeSale(uint256 tokenId) public payable {
+
+    function executeSale(
+        uint256 tokenId
+        ) public payable {
         uint price = idToListedToken[tokenId].price;
         address seller = idToListedToken[tokenId].seller;
         require(msg.value == price, "Please submit the asking price in order to complete the purchase");
-
-        //update the details of the token
+        idToListedToken[tokenId].owner = payable(msg.sender);
         idToListedToken[tokenId].currentlyListed = true;
-        idToListedToken[tokenId].seller = payable(msg.sender);
+        idToListedToken[tokenId].seller = payable(address(0));
         _itemsSold.increment();
-
-        //Actually transfer the token to the new owner
         _transfer(address(this), msg.sender, tokenId);
-        //approve the marketplace to sell NFTs on your behalf
-        approve(address(this), tokenId);
-
-        //Transfer the listing fee to the marketplace creator
         payable(owner).transfer(listPrice);
-        //Transfer the proceeds from the sale to the seller of the NFT
         payable(seller).transfer(msg.value);
+      }
+
+
+    function resellToken(uint256 tokenId, uint256 price) public payable {
+        require(
+            idToListedToken[tokenId].owner == msg.sender,
+            "Only item owner can perform this operation"
+        );
+        require(
+            msg.value == listPrice,
+            "Price must be equal to listing price"
+        );
+        idToListedToken[tokenId].currentlyListed = false;
+        idToListedToken[tokenId].price = price;
+        idToListedToken[tokenId].seller = payable(msg.sender);
+        idToListedToken[tokenId].owner = payable(address(this));
+        _itemsSold.decrement();
+        _transfer(msg.sender, address(this), tokenId);
     }
-
-
-    // function resellToken(uint256 tokenId, uint256 price) public payable {
-    //     require(
-    //         idToListedToken[tokenId].owner == msg.sender,
-    //         "Only item owner can perform this operation"
-    //     );
-    //     require(
-    //         msg.value == listingPrice,
-    //         "Price must be eqaul to listing price"
-    //     );
-    //     idToListedToken[tokenId].currentlyListed = false;
-    //     idToListedToken[tokenId].price = price;
-    //     idToListedToken[tokenId].seller = payable(msg.sender);
-    //     idToListedToken[tokenId].owner = payable(address(this));
-    //     _itemsSold.decrement();
-    //     _transfer(msg.sender, address(this), tokenId);
-    // }
     
 
 } 
