@@ -286,6 +286,7 @@
   height: 430px;
   border: 1px solid rgb(223, 216, 216);
   border-radius: 20px;
+  width: 90%
 }
 .resellPg p{
   font-size: 16px;
