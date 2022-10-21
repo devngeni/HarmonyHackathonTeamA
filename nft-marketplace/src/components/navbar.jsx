@@ -48,6 +48,13 @@ const signInMetamask = async () => {
     .request({ method: 'eth_requestAccounts' })
     .then(async params => {
       handleAccountsChanged(params);
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params:[{
+          chainId: '0x6357D2E0'
+      }]
+      });
+
       setAuthorised(true);
     })
     .catch(err => {
@@ -77,9 +84,10 @@ return (
             {/* <div onClick={() => handleClick()}>explore</div> */}
             <Link to="/explore">Explore</Link>
             <Link to="/create">Create NFT</Link>
+            {authorised ? <Link to="/yourNFTs">Your NFTs</Link> : ""}
         </div>
         <div className="navLinks2">
-            <a href="/" className="Button">Sign Up</a>
+            {/* <a href="/" className="Button">Sign Up</a> */}
             {account ? <button className='connect'>{account}</button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
         </div>
     </nav>
@@ -90,11 +98,12 @@ return (
       <div className="mainLink">
       <Link to="/">Ngeni NFT Market</Link>
       </div>
-        {/* <div className="navLinks">
+        <div className="navLinks">
             <Link to="/explore">Explore</Link>
             <Link to="/create">Create NFT</Link>
-            <a href="/" className="Button">Sign Up</a>
-        </div> */}
+            {authorised ? <Link to="/yourNFTs">Your NFTs</Link> : ""}
+            {/* <a href="/" className="Button">Sign Up</a> */}
+        </div>
         <div>
         {account ? <button className='connect'>{account}</button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { uploadFileToIPFS, uploadJSONToIPFS } from "../pinata";
 import { ethers, Contract, providers, utils } from "ethers";
 import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
+import Loader from "./Loader";
 
 const CreateNFT = () => {
   const [formParams, updateFormParams] = useState({
@@ -12,6 +13,7 @@ const CreateNFT = () => {
 
   const [fileURL, setFileURL] = useState(null);
   const [message, updateMessage] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   async function handleChange(e) {
     var file = e.target.files[0];
@@ -57,6 +59,7 @@ const CreateNFT = () => {
     e.preventDefault();
     //Upload data to IPFS
     try {
+      setLoading(true)
       const metadataURL = await uploadMetadataToIPFS();
       //  const provider
       //After adding your Hardhat network to your metamask, this code will get providers and signers
@@ -73,9 +76,11 @@ const CreateNFT = () => {
         value: listingPrice,
       });
       await transaction.wait();
+
       updateMessage("Please wait.. uploading (upto 5 mins)");
       alert("Successfully listed your NFT!");
       updateMessage("");
+      setLoading(false);
       updateFormParams({ name: "", description: "", price: "" });
       window.location.replace("/explore");
     } catch (e) {
@@ -109,7 +114,7 @@ const CreateNFT = () => {
           type="text"
           className="inputSpace"
           name="nftPrice"
-          placeholder="amount(in ETH)"
+          placeholder="amount(in One)"
           id="price"
           value={formParams.price}
           onChange={(e) =>
@@ -144,8 +149,8 @@ const CreateNFT = () => {
           ></input>
         </div>
       </div>
-      <button className="createNftBtn" onClick={handleSubmission}>
-        Create
+     <button className="createNftBtn" onClick={handleSubmission}>
+        {isLoading? <Loader />:"Create"}
       </button>
     </div>
   );
