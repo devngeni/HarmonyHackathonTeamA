@@ -1,4 +1,3 @@
-import { faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 import { ethers } from 'ethers';
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -88,9 +87,6 @@ const YourNFTs = () => {
                  to={`/resell?tokenId=${nft.tokenId}&&tokenuri=${nft.image}&&price=${nft.price}&&description=${nft.description}&&name=${nft.name}`} > <button className="link2Button">
                   Resell
                 </button></Link>          
-                
-                {/* <button onclick={() => this.props.history.push({pathname: '/resell', state: { tokenId: 'nft.tokenId' }})}>push</button>      */}
-                {/* <button onclick={() => this.props.history.push("/resell")}>push</button>      */}
               
               </div>
             </div>
