@@ -2,21 +2,54 @@ import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import detectEthereumProvider from '@metamask/detect-provider';
+const { Harmony } = require('@harmony-js/core');
+const {
+  ChainID,
+  ChainType,
+  hexToNumber,
+  numberToHex,
+  fromWei,
+  Units,
+  Unit,
+} = require('@harmony-js/utils');
 
 const Navbar = () => {
 
 const [account, setAccount] = useState('');
+const [balanceY, setBalance] = useState('');
 const [authorised, setAuthorised] = useState(false);
 
+
+
+const hmy = new Harmony(
+    'https://api.s0.b.hmny.io/',
+    {
+        chainType: ChainType.Harmony,
+        chainId: ChainID.HmyTestnet,
+    },
+);
+
 const handleAccountsChanged = (accounts) => {
+  let unitBalance;
   if (accounts.length === 0) {
     console.error('Not found accounts');
   } else {
     setAccount(String(accounts[0]).substring(0, 5) + "..." + String(accounts[0].substring(38)));
 
+     hmy.blockchain
+  .getBalance({ address: accounts[0] })
+  .then((response) => {
+    console.log('balance in ONEsss: ' + fromWei(hexToNumber(response.result), Units.one));
+    // unitBalance.push(fromWei(hexToNumber(response.result), Units.one))
+    setBalance(parseFloat(fromWei(hexToNumber(response.result), Units.one)).toFixed(4));
+  })
+  
     console.log('Your address: ', accounts[0]);
+    return unitBalance;
   }
 };
+
+
 
 const signInMetamask = async () => {
   const provider = await detectEthereumProvider();
@@ -88,7 +121,8 @@ return (
         </div>
         <div className="navLinks2">
             {/* <a href="/" className="Button">Sign Up</a> */}
-            {account ? <button className='connect'>{account}</button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
+            {account ? <button className='connect'>{account}<br/> <span style={{color: 'black'}}>Balance : {balanceY} ONE</span> </button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
+          
         </div>
     </nav>
     </div>
@@ -105,7 +139,8 @@ return (
             {/* <a href="/" className="Button">Sign Up</a> */}
         </div>
         <div>
-        {account ? <button className='connect'>{account}</button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
+        {account? <button className='connect'>{account}</button>: <button className='connect' onClick={signInMetamask}>Connect Wallet</button>}
+      
         </div>
     </nav>
     </div>
